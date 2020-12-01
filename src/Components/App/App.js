@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MovieContainer from '../MovieContainer/MovieContainer';
 import './App.css';
 
 class App extends Component {
@@ -9,7 +10,8 @@ class App extends Component {
   render() {
     return(
       <main>
-        <header>Rancid Tomatillos</header>
+        <h1>Rancid Tomatillos</h1>
+        <MovieContainer />
       </main>
     )
   }
