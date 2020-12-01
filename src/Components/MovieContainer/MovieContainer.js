@@ -6,11 +6,11 @@ const MovieContainer = ({ movies }) => {
 
   const posters = movies.map(movie => {
     return (
-      <section className="poster">
-        <img src={ movie.poster_path } />
-        <h3>{ movie.title }</h3>
-        <p>{ movie.average_rating.toFixed(2) }</p>
-      </section>
+      <MoviePoster
+        image={ movie.poster_path }
+        title={ movie.title }
+        rating={ movie.average_rating.toFixed(2) }
+      />
     )
   })
 
