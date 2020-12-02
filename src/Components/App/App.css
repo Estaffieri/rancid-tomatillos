@@ -2,7 +2,19 @@
   text-align: center;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-family: "Roboto", sans-serif;
+}
+
 .tomato {
+  padding-left: 1vw;
+  padding-right: 1vw;
   display: inline-block;
   pointer-events: none;
 }

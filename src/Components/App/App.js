@@ -16,7 +16,8 @@ class App extends Component {
       <main>
         <header>
           <h1 className="tomato">&#x1F345;</h1>
-          <h1>Rancid Tomatillos</h1>
+          <h1 className="title">RANCID TOMATILLOS</h1>
+          <h1 className="tomato">&#x1F345;</h1>
         </header>
         <MovieContainer movies={this.state.movies} />
       </main>
