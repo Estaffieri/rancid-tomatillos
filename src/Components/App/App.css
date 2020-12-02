@@ -6,6 +6,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #C4BDAC;;
 }
 
 .title {
