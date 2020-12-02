@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <main>
-        <header>
+        <header tabIndex = {0}>
           <h1 className="tomato">&#x1F345;</h1>
           <h1 className="title">RANCID TOMATILLOS</h1>
           <h1 className="tomato">&#x1F345;</h1>
