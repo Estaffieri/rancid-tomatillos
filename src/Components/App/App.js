@@ -11,11 +11,11 @@ class App extends Component {
       movies: movieData.movies,
       movieDetails: []
     }
-    
+
   }
 
   displayMovieDetails = (id) => {
-  
+
     const selectedMovie = [{
       movie: {
         id: 1,
