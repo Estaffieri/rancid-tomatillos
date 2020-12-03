@@ -47,7 +47,7 @@ class App extends Component {
           <h1 className="tomato">&#x1F345;</h1>
         </header>
         {this.state.movieDetails.length === 0 && <MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>}
-        {this.state.movieDetails.length !== 0 && <MovieDetails />}
+        {this.state.movieDetails.length !== 0 && <MovieDetails movieDetails ={this.state.movieDetails} />}
       </main>
     );
   }

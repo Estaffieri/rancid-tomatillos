@@ -19,7 +19,7 @@ const MovieContainer = ({ movies, displayMovieDetails}) => {
 
   return (
     <section className="movies-container">
-      {posters}
+      { posters }
     </section>
   )
 }
