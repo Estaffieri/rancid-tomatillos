@@ -8,17 +8,30 @@ describe('Movie Poster', () => {
       id={ 1 }
       image="https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg"
       title= "Best Movie Ever"
-      rating={ 6.5 }
+      rating={ 9.5 }
       displayMovieDetails = {jest.fn()}
       key = { 1 }
     />)
 
     expect(screen.getByText("Best Movie Ever")).toBeInTheDocument()
-    // expect(screen.getByText("6.5")).toBeInTheDocument()
-    // we are expecting to see the integer 6.5 rendered on the page as part of the movie posters
+    expect(screen.getByAltText("Best Movie Ever")).toBeInTheDocument()
+    // expect(screen.getByText("9.5")).toBeInTheDocument()
+    // we are expecting to see the integer 9.5 rendered on the page as part of the movie posters
     // getByText is looking for STRINGS on the page, NOT integers which is our problem
-    // expect(getByDataTestId('image')).toHaveAttribute('src', 'https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg')
-    // confirm that image src is rendered on page?
+  })
+
+  it('should call displayMovieDetails with the correct id', () => {
+    const mockDisplayMovieDetails = jest.fn()
+
+    render(<MoviePoster
+      id={ 2 }
+      image="https://image.tmdb.org/t/p/original//oazPqs1z78LcIOFslbKtJLGlueo.jpg"
+      title= "Worst Movie Ever"
+      rating={ 1.5 }
+      displayMovieDetails = {mockDisplayMovieDetails}
+      key = { 1 }
+    />)
+
   })
 })
 
