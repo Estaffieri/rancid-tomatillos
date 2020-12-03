@@ -2,14 +2,17 @@ import React from 'react';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import './MovieContainer.css';
 
-const MovieContainer = ({ movies }) => {
+const MovieContainer = ({ movies, displayMovieDetails}) => {
 
   const posters = movies.map(movie => {
     return (
       <MoviePoster
+        id={ movie.id }
         image={ movie.poster_path }
         title={ movie.title }
         rating={ movie.average_rating.toFixed(2) }
+        displayMovieDetails = {displayMovieDetails}
+        key = {movie.id}
       />
     )
   })
