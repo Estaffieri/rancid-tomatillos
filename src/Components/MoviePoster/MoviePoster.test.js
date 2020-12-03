@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MoviePoster from './MoviePoster';
 
@@ -31,6 +31,11 @@ describe('Movie Poster', () => {
       displayMovieDetails = {mockDisplayMovieDetails}
       key = { 1 }
     />)
+
+    const posterImage = screen.getByAltText("Worst Movie Ever")
+    fireEvent.click(posterImage)
+
+    expect(mockDisplayMovieDetails).toHaveBeenCalledWith(2)
 
   })
 })
