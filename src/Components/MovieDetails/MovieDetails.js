@@ -20,8 +20,8 @@ const MovieDetails = ({ movieDetails }) => {
               <button>Go Back</button>
             </section>
 
-            <h3>{movieDetails[0].movie.title}</h3>
-            <p>{movieDetails[0].movie.tagline}</p>
+            <h3>{movieDetails[0].movie.title.toUpperCase()}</h3>
+            <p className="tagline">{movieDetails[0].movie.tagline}</p>
             <p>Average Rating: &#11088; {movieDetails[0].movie.average_rating}</p>
             <section className="movie-facts">
             <p>Movie Runtime: {movieDetails[0].movie.runtime} mins</p>

@@ -3,6 +3,7 @@
 }
 
 .macro-container {
+   font-family: "Roboto", sans-serif;
    border: solid black 1px;
    display: flex;
 }
@@ -30,4 +31,16 @@
 button {
     margin: 1em;
     border-color: transparent;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+}
+
+.tagline {
+    margin-top: 0.5em;
+    align-self: center;
+    font-size: 1rem;
+    font-style: italic;
 }
