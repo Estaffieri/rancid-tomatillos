@@ -11,7 +11,6 @@ class App extends Component {
       movies: movieData.movies,
       movieDetails: []
     }
-
   }
 
   displayMovieDetails = (id) => {

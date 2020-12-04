@@ -6,11 +6,11 @@ const MovieDetails = ({ movieDetails }) => {
 
     const details = (
       <section>
-        <section
-          tabIndex={0}
-          className="poster"
-          // onClick={() => displayMovieDetails(id)}
-        >
+        <section className="back-button">
+          <button>Go Back</button>
+        </section>
+
+        <section tabIndex={0} className="poster">
           <img
             src={movieDetails[0].movie.poster_path}
             className="poster-image"
