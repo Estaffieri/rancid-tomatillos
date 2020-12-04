@@ -2,18 +2,32 @@
     border: solid black 1px;
 }
 
-.movie-info {
-    border: solid black 1px;
-}
-
-.go-back-button {
-    border: transparent;
-}
-
 .macro-container {
    border: solid black 1px;
    display: flex;
+}
 
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: left;
+    border: solid black 1px;
+}
 
+.back-button {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
 
+.movie-facts {
+    padding-left: 1em;
+    background-color: #E8E6D9
+}
+
+button {
+    margin: 1em;
+    border-color: transparent;
 }

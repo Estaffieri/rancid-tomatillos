@@ -16,20 +16,21 @@ const MovieDetails = ({ movieDetails }) => {
           </section>
 
           <section className="movie-info">
-
             <section className="back-button">
               <button>Go Back</button>
             </section>
-            
+
             <h3>{movieDetails[0].movie.title}</h3>
-            <p>&#11088; {movieDetails[0].movie.average_rating}</p>
-            <p>{movieDetails[0].movie.runtime}</p>
-            <p>{movieDetails[0].movie.release_date}</p>
-            <p>{movieDetails[0].movie.genres[0].name}</p>
             <p>{movieDetails[0].movie.tagline}</p>
+            <p>Average Rating: &#11088; {movieDetails[0].movie.average_rating}</p>
+            <section className="movie-facts">
+            <p>Movie Runtime: {movieDetails[0].movie.runtime} mins</p>
+            <p>Released: {movieDetails[0].movie.release_date}</p>
+            <p>Genre: {movieDetails[0].movie.genres[0].name}</p>
             <p>{movieDetails[0].movie.overview}</p>
-            <p>{movieDetails[0].movie.budget}</p>
-            <p>{movieDetails[0].movie.revenue}</p>
+            <p>Budget: {movieDetails[0].movie.budget}</p>
+            <p>Revenue: {movieDetails[0].movie.revenue}</p>
+            </section>
           </section>
         </section>
       </section>
