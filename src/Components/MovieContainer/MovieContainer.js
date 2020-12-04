@@ -10,7 +10,7 @@ const MovieContainer = ({ movies, displayMovieDetails}) => {
         id={ movie.id }
         image={ movie.poster_path }
         title={ movie.title }
-        rating={ movie.average_rating.toFixed(2) }
+        rating={ movie.average_rating }
         displayMovieDetails = {displayMovieDetails}
         key = {movie.id}
       />
