@@ -6,7 +6,8 @@ const MoviePoster = ({ id, image, title, rating, displayMovieDetails }) => {
       <section tabIndex ={0} className="poster" onClick={ ()=> displayMovieDetails(id) }>
         <img src={ image } id ={ id } className="poster-image" alt={ title } />
         <h3>{ title }</h3>
-        <p>&#11088;  { rating }</p>
+        <p>&#11088;</p>
+        <p>{ rating.toFixed(1) }</p>
       </section>
     );
 }
