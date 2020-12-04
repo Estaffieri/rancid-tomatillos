@@ -10,7 +10,7 @@ const MovieDetails = ({ movieDetails }) => {
           <section tabIndex={0} className="poster">
             <img
               src={movieDetails[0].movie.poster_path}
-              className="poster-image"
+              className="movie-image"
               alt={movieDetails[0].movie.title}
             />
           </section>
@@ -39,6 +39,11 @@ const MovieDetails = ({ movieDetails }) => {
             </section>
 
           </section>
+        </section>
+        <section className="second-image-section">
+          <img src={movieDetails[0].movie.backdrop_path}
+              className="backdrop-image"
+              alt={movieDetails[0].movie.title} />
         </section>
       </section>
     );

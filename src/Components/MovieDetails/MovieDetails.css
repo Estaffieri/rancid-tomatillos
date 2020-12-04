@@ -63,3 +63,12 @@ h3 {
     display: flex;
     justify-content: space-between;
 }
+
+.backdrop-image {
+    width: 100%;
+}
+
+.movie-image {
+    width: 100%;
+    justify-content: center;
+}
