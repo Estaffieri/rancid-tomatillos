@@ -5,3 +5,15 @@
 .movie-info {
     border: solid black 1px;
 }
+
+.go-back-button {
+    border: transparent;
+}
+
+.macro-container {
+   border: solid black 1px;
+   display: flex;
+
+
+
+}
