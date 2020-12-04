@@ -1,7 +1,74 @@
-.movie-detail-view {
-    border: solid black 1px;
+
+.macro-container {
+   font-family: "Roboto", sans-serif;
+   display: flex;
 }
 
 .movie-info {
-    border: solid black 1px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-align: left;
+}
+
+.back-button {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+
+.movie-facts {
+    font-size: 1rem;
+    padding-left: 1em;
+    padding-top: 1em;
+    background-color: #E8E6D9
+}
+
+.movie-highlights {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background: #ec2d01;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 1em;
+    border-color: transparent;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+}
+
+.tagline {
+    margin-top: 0.5em;
+    align-self: center;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+#i {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-money-info {
+    padding-right: 1em;
+    font-size: 0.8em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.backdrop-image {
+    width: 100%;
+}
+
+.movie-image {
+    width: 100%;
+    justify-content: center;
 }

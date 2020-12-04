@@ -9,8 +9,8 @@ class App extends Component {
     super();
     this.state = {
       movies: movieData.movies,
-      movieDetails: []
-    }
+      movieDetails: [],
+    };
   }
 
   displayMovieDetails = (id) => {
