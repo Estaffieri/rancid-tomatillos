@@ -12,10 +12,15 @@
     text-align: left;
 }
 
-.back-button {
+.go-back-section {
     display: flex;
     justify-content: flex-end;
     align-self: flex-end;
+}
+
+.back-button:hover {
+  cursor: pointer;
+  background-color: #C4BDAC;
 }
 
 .movie-facts {
