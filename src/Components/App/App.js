@@ -3,16 +3,20 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
 import movieData from '../../SampleMovieData';
-import { getAllMovies } from '../apiCalls.js'
+import { getAllMovies } from '../../apiCalls.js'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: movieData.movies,
+      movies: [],
       // movieData.movies replace with get ALL movies api call
       movieDetails: [],
     };
+  }
+
+  componentDidMount() {
+    getAllMovies().then(movieData => this.setState({movies: movieData.movies}))
   }
 
   displayMovieDetails = (id) => {
