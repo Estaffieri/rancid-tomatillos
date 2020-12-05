@@ -29,7 +29,7 @@ const MovieDetails = ({ movieDetails, goBackToMain }) => {
             <section className="movie-facts">
               <p id="i">Movie Runtime: {movieDetails.runtime} mins</p>
               <p id="i">Released: {movieDetails.release_date}</p>
-              <p id="i">Genre: {movieDetails.genres[0].name}</p>
+              <p id="i">Genre: {movieDetails.genres[0]}</p>
               <p>{movieDetails.overview}</p>
 
               <section className="movie-money-info">

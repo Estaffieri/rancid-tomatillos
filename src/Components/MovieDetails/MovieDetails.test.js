@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import MovieDetails from './MovieDetails';
+import { render, screen, waitFor } from "@testing-library/react";
+
 
 describe('App', () => {
   it('should render movie details', () => {
