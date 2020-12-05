@@ -79,12 +79,4 @@ describe('Movie Poster', () => {
 
 
   })
-
-  
-  //apiCall --getSelectedMovie
-  //Render Movie poster?
-  //Call display Movie details
-  //mockfetch call
-  //wow
-  //
 })
