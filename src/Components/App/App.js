@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
-import movieData from '../../SampleMovieData';
 import { getAllMovies, getSelectedMovie } from '../../apiCalls.js'
 
 class App extends Component {
