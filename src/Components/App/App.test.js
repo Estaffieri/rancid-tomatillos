@@ -1,7 +1,9 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from './App';
-import { getAllMovies } from '../../apiCalls';
+import MovieDetails from '../MovieDetails/MovieDetails';
+import MoviePoster from '../MoviePoster/MoviePoster';
+import { getAllMovies, getSelectedMovie } from '../../apiCalls';
 jest.mock('../../apiCalls');
 
 describe('App', () => {
@@ -17,45 +19,55 @@ describe('App', () => {
     expect(screen.getByText("RANCID TOMATILLOS")).toBeInTheDocument()
   })
 
-  it('should display all movies', async () => {
-    
+  it('should render movie details', async () => {
     getAllMovies.mockResolvedValueOnce({
       movies: [
-        {
-          id: 7456,
-          poster_path:
-            "https://image.tmdb.org/t/p/original//aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
-          backdrop_path:
-            "https://image.tmdb.org/t/p/original//zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
-          title: "Super Fake Movie",
-          average_rating: 1.909090909090909,
-          release_date: "2020-09-04",
-          key: 7456,
-        },
-        {
-          id: 3333,
-          poster_path:
-            "https://image.tmdb.org/t/p/original//aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
-          backdrop_path:
-            "https://image.tmdb.org/t/p/original//zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
-          title: "Very Real Fake Movie",
-          average_rating: 3.909090909090909,
-          release_date: "2020-09-04",
-          key: 3333,
-        },
-      ],
-    });
+      {
+        id: 7456,
+        poster_path:
+          "https://image.tmdb.org/t/p/original//aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
+        backdrop_path:
+          "https://image.tmdb.org/t/p/original//zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
+        title: "Super Fake Movie",
+        average_rating: 1.909090909090909,
+        release_date: "2020-09-04",
+        key: 7456,
+      }]
+    })
 
-    render(<App />);
-    const movieTitle1 = await waitFor(() => screen.getByText("Super Fake Movie"));
-    const movieTitle2 = await waitFor(() => screen.getByText("Very Real Fake Movie"))
+    render(<App />)
 
-    expect(movieTitle1).toBeInTheDocument()
-    expect(movieTitle2).toBeInTheDocument();
-    
+    getSelectedMovie.mockResolvedValueOnce({
+      movie: {
+        id: 7456,
+        title: "Super Fake Movie",
+        poster_path: "https://image.tmdb.org/t/p/original//aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",
+        backdrop_path: "https://image.tmdb.org/t/p/original//zzWGRw277MNoCs3zhyG3YmYQsXv.jpg",
+        release_date:"2020-09-04",
+        overview:"Watch this great movie!",
+        genres:["Romance"],
+        budget: 5,
+        revenue:100000000,
+        runtime: 45,
+        tagline: "You will not regret watching!",
+        average_rating: 1.909090909090909,
+        key: 7456
+      }
+    })
+
+    render(<MoviePoster
+      id={ 7456 }
+      image= "https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg"
+      title="Super Fake Movie"
+      rating={1.909090909090909}
+      displayMovieDetails = {jest.fn()}
+      key = { 7456 }
+      />)
+
+    const posterImage = screen.getByAltText("Super Fake Movie")
+    fireEvent.click(posterImage)
+
+    const movieTitle = await waitFor(() => screen.getByText("Super Fake Movie"))
+    expect(movieTitle).toBeInTheDocument()
   })
 })
-
-// APP test
-// test 1: header is rendered
-// test 2(?): this.state based on the conditional
