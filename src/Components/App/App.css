@@ -52,3 +52,9 @@ header {
     transform: rotateX(360deg);
   }
 }
+
+h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 0.9em;
+}
