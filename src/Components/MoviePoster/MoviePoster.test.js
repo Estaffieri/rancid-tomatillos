@@ -36,6 +36,5 @@ describe('Movie Poster', () => {
     fireEvent.click(posterImage)
 
     expect(mockDisplayMovieDetails).toHaveBeenCalledWith(2)
-
   })
 })

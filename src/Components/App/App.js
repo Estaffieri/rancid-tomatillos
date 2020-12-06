@@ -37,7 +37,9 @@ class App extends Component {
           <h1 className="tomato">&#x1F345;</h1>
         </header>
         {this.state.error !== '' && <h2>Oops! Something went wrong. Try again later.</h2>}
+
         {Object.keys(this.state.movieDetails).length === 0 && this.state.error === '' && <MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>}
+        
         {Object.keys(this.state.movieDetails).length !== 0 && <MovieDetails movieDetails ={this.state.movieDetails} goBackToMain={this.goBackToMain}/>}
       </main>
     );
