@@ -16,12 +16,12 @@ class App extends Component {
 
   componentDidMount() {
     getAllMovies().then(movieData => this.setState({movies: movieData.movies}))
-    .catch(errorMessage => this.setState({error: errorMessage}))
+    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
   displayMovieDetails = (id) => {
     getSelectedMovie(id).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-    .catch(errorMessage => this.setState({error: errorMessage}))
+    .catch(errorMessage => {console.log(errorMessage)})
   }
 
   goBackToMain = () => {
@@ -36,8 +36,8 @@ class App extends Component {
           <h1 className="title">RANCID TOMATILLOS</h1>
           <h1 className="tomato">&#x1F345;</h1>
         </header>
-        {this.state.error !== '' && <MovieContainer error={this.state.error}}
-        {Object.keys(this.state.movieDetails).length === 0 && <MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>}
+        {this.state.error !== '' && <h2>Oops! Something went wrong. Try again later.</h2>}
+        {Object.keys(this.state.movieDetails).length === 0 && this.state.error === '' && <MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>}
         {Object.keys(this.state.movieDetails).length !== 0 && <MovieDetails movieDetails ={this.state.movieDetails} goBackToMain={this.goBackToMain}/>}
       </main>
     );
