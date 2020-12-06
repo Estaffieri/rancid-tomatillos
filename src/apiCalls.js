@@ -4,6 +4,6 @@ export const getAllMovies = () => {
 }
 
 export const getSelectedMovie = (id) => {
-  return fetch(`https://ranci-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
     .then(response => response.json())
 }

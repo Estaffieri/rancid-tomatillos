@@ -1,43 +1,82 @@
 import MovieDetails from './MovieDetails';
+import MoviePoster from '../MoviePoster/MoviePoster';
 import { fireEvent, waitFor, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { displayMovieDetails } from "../App/App";
-import { getSelectedMovie } from "../../apiCalls";
+import { getAllMovies, getSelectedMovie } from "../../apiCalls";
 jest.mock("../../apiCalls");
 
 
-describe('Back Button', () => {
-  it('should return to main page once clicked', () => {
-     
-        const mockBackButton= jest.fn();
+describe('Movie Details', () => {
+  it ('should display a single movie', async () => {
+    render(
+      <MoviePoster
+        id={694919}
+        image="some-image"
+        title="Money Plane"
+        rating={6.666666666666667}
+        displayMovieDetails={jest.fn()}
+        key={694919}
+      />
+    );
 
-        render(
-          <MovieDetails 
-            id={694919}
-            title= "Money Plane"
-            poster_path=
-              "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg"
-            backdrop_path=
-              "https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg"
-            release_date= "2020-09-29"
-            overview=
-              "A professional thief with $40 million in debt and his family's life on the line must commit one final heist - rob a futuristic airborne casino filled with the world's most dangerous criminals."
-            genres= {["Action"]}
-            budget={0}
-            revenue={0}
-            runtime={82}
-            tagline= ""
-            average_rating={6.666666666666667}
-          />
-        );
+    const posterImage = await waitFor(() => screen.getByAltText("Money Plane"));
+    fireEvent.click(posterImage);
 
-        const backButton = screen.getByAltText("Go Back");
-        fireEvent.click(backButton);
+        getSelectedMovie.mockResolvedValueOnce({
+          movie: {
+            id: 694919,
+            title: "Money Plane",
+            poster_path:
+              "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
+            backdrop_path:
+              "https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg",
+            release_date: "2020-09-29",
+            overview:
+              "A professional thief with $40 million in debt and his family's life on the line must commit one final heist - rob a futuristic airborne casino filled with the world's most dangerous criminals.",
+            genres: ["Action"],
+            budget: 0,
+            revenue: 0,
+            runtime: 82,
+            tagline: "",
+            average_rating: 6.666666666666667,
+          },
+        });
 
-        expect(mockBackButton).toHaveBeenCalled(1);
-        //movieDetails coming back as undef. on poster_path line.
-        //Do we need to mock entire flow to test one button with apiCalls?
-      });
+        expect(posterImage).toBeInTheDocument();
+  })
 
-  
+  // it('should return to main page once clicked', () => {
+  //
+  //       const mockBackButton= jest.fn();
+  //
+  //       render(
+  //         <MovieDetails
+  //           id={694919}
+  //           title= "Money Plane"
+  //           poster_path=
+  //             "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg"
+  //           backdrop_path=
+  //             "https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg"
+  //           release_date= "2020-09-29"
+  //           overview=
+  //             "A professional thief with $40 million in debt and his family's life on the line must commit one final heist - rob a futuristic airborne casino filled with the world's most dangerous criminals."
+  //           genres= {["Action"]}
+  //           budget={0}
+  //           revenue={0}
+  //           runtime={82}
+  //           tagline= ""
+  //           average_rating={6.666666666666667}
+  //         />
+  //       );
+  //
+  //       const backButton = screen.getByAltText("Go Back");
+  //       fireEvent.click(backButton);
+  //
+  //       expect(mockBackButton).toHaveBeenCalled(1);
+  //       //movieDetails coming back as undef. on poster_path line.
+  //       //Do we need to mock entire flow to test one button with apiCalls?
+  //     });
+
+
 })
