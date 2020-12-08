@@ -3,6 +3,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
 import { getAllMovies, getSelectedMovie } from '../../apiCalls.js'
+import { Route, NavLink, Switch} from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -36,11 +37,7 @@ class App extends Component {
           <h1 className="title">RANCID TOMATILLOS</h1>
           <h1 className="tomato">&#x1F345;</h1>
         </header>
-        {this.state.error !== '' && <h2>Oops! Something went wrong. Try again later.</h2>}
-
-        {Object.keys(this.state.movieDetails).length === 0 && this.state.error === '' && <MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>}
-        
-        {Object.keys(this.state.movieDetails).length !== 0 && <MovieDetails movieDetails ={this.state.movieDetails} goBackToMain={this.goBackToMain}/>}
+        <Route exact path="/" render={ () =>{ return(<MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>)}}/>
       </main>
     );
   }
