@@ -3,7 +3,7 @@ import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
 import { getAllMovies, getSelectedMovie } from '../../apiCalls.js'
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 
 class App extends Component {
@@ -33,19 +33,37 @@ class App extends Component {
   render() {
     return (
       <main>
-        <header tabIndex = {0}>
+        <header tabIndex={0}>
           <h1 className="tomato">&#x1F345;</h1>
           <h1 className="title">RANCID TOMATILLOS</h1>
           <h1 className="tomato">&#x1F345;</h1>
         </header>
 
-        <Route exact path="/" render={ () =>{ return(<MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>)}}/>
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return (
+              <MovieContainer
+                movies={this.state.movies}
+                displayMovieDetails={this.displayMovieDetails}
+              />
+            );
+          }}
+        />
 
-        <Route exact path="/:movieId" render={ () => {
-            return ( <MovieDetails movieDetails ={this.state.movieDetails} goBackToMain={ this.goBackToMain }/>
-            )
-        }}/>
-
+        <Route
+          exact
+          path="/:id"
+          render={() => {
+            return (
+              <MovieDetails
+                movieDetails={this.state.movieDetails}
+                goBackToMain={this.goBackToMain}
+              />
+            );
+          }}
+        />
       </main>
     );
   }
