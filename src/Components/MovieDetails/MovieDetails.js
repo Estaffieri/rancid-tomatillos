@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./MovieDetails.css";
 import { getSelectedMovie, getMovieTrailers } from '../../apiCalls';
-import {Link} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -15,10 +15,14 @@ class MovieDetails extends Component {
     }
   }
   componentDidMount() {
-  getSelectedMovie(parseInt(this.state.id)).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-  .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+  getSelectedMovie(parseInt(this.state.id))
+    .then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
+    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
 
-  getMovieTrailers(parseInt(this.state.id)).then(movieTrailers => this.setState({movieTrailers: movieTrailers})).catch(errorMessage => this.setState({error: errorMessage.toString()}))
+  getMovieTrailers(parseInt(this.state.id))
+    .then(movieTrailers => this.setState({movieTrailers: movieTrailers}))
+    .then(() => this.loadMovieTrailers())
+    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
   goBackToMain = () => {
@@ -28,6 +32,7 @@ class MovieDetails extends Component {
 
   render() {
   let details;
+
 
   if(!this.state.movieDetails.id) {
     return <h1>Loading...</h1>
@@ -68,8 +73,11 @@ class MovieDetails extends Component {
             </section>
           </section>
         </section>
-        <section className="second-image-section">
-
+        <section className="movie-trailers">
+        {this.state.movieTrailers.videos.map(video => {
+            return <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} />
+          })
+        }}
       </section>
       </section>
     );
