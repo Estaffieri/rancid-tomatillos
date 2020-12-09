@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
-import { getAllMovies, getSelectedMovie } from '../../apiCalls.js'
+import { getAllMovies } from '../../apiCalls.js'
+import { Route } from "react-router-dom";
+
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       movies: [],
-      movieDetails: {},
       error: ''
     };
   }
@@ -19,28 +20,46 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
-  displayMovieDetails = (id) => {
-    getSelectedMovie(id).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
-  }
+  // displayMovieDetails = (id) => {
+  //   getSelectedMovie(id).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
+  //   .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+  // }
 
-  goBackToMain = () => {
-    this.setState({movieDetails: {}})
-  }
+  // goBackToMain = () => {
+  //   this.setState({movieDetails: {}})
+  // }
 
   render() {
     return (
       <main>
-        <header tabIndex = {0}>
+        <header tabIndex={0}>
           <h1 className="tomato">&#x1F345;</h1>
           <h1 className="title">RANCID TOMATILLOS</h1>
           <h1 className="tomato">&#x1F345;</h1>
         </header>
-        {this.state.error !== '' && <h2>Oops! Something went wrong. Try again later.</h2>}
 
-        {Object.keys(this.state.movieDetails).length === 0 && this.state.error === '' && <MovieContainer movies={this.state.movies} displayMovieDetails = {this.displayMovieDetails}/>}
-        
-        {Object.keys(this.state.movieDetails).length !== 0 && <MovieDetails movieDetails ={this.state.movieDetails} goBackToMain={this.goBackToMain}/>}
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return (
+              <MovieContainer
+                movies={this.state.movies}
+              />
+            );
+          }}
+        />
+
+        <Route
+          exact
+          path="/:id"
+          render={({ match }) => {
+            return (
+              <MovieDetails id={match.params.id}
+              />
+            );
+          }}
+        />
       </main>
     );
   }
