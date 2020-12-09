@@ -3,6 +3,8 @@ import "./MovieDetails.css";
 import { getSelectedMovie, getMovieTrailers } from '../../apiCalls';
 import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -74,10 +76,12 @@ class MovieDetails extends Component {
           </section>
         </section>
         <section className="movie-trailers">
+        <AliceCarousel>
         {this.state.movieTrailers.videos.map(video => {
             return <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} />
           })
-        }}
+        }
+        </AliceCarousel>
       </section>
       </section>
     );
