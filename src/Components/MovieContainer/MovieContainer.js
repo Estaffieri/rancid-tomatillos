@@ -7,7 +7,6 @@ const MovieContainer = ({ movies, displayMovieDetails}) => {
 
   const posters = movies.map(movie => {
     return (
-      <Link to="/" style={{textDecoration: "none"}}>
         <MoviePoster
           id={movie.id}
           image={movie.poster_path}
@@ -16,13 +15,14 @@ const MovieContainer = ({ movies, displayMovieDetails}) => {
           displayMovieDetails={displayMovieDetails}
           key={movie.id}
         />
-      </Link>
     );
   })
 
   return (
     <section className="movies-container">
+       <Link to="/" style={{textDecoration: "none"}}>
       { posters }
+      </Link>
     </section>
   )
 }
