@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MovieDetails.css";
-import { getSelectedMovie } from '../../apiCalls';
+import { getSelectedMovie, getMovieTrailers } from '../../apiCalls';
 import {Link} from 'react-router-dom';
 
 
@@ -17,10 +17,13 @@ class MovieDetails extends Component {
   componentDidMount() {
   getSelectedMovie(parseInt(this.state.id)).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
   .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+
+  getMovieTrailers(parseInt(this.state.id)).then(movieTrailers => this.setState({movieTrailers: movieTrailers})).catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
   goBackToMain = () => {
     this.setState({movieDetails: {}})
+    // this.setState({movieTrailer: []})
   }
 
   render() {
