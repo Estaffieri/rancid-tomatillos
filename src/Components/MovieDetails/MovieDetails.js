@@ -10,6 +10,7 @@ class MovieDetails extends Component {
     this.state = {
       id: this.props.id,
       movieDetails: {},
+      movieTrailers: [],
       error: ''
     }
   }
@@ -23,7 +24,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-  let details
+  let details;
 
   if(!this.state.movieDetails.id) {
     return <h1>Loading...</h1>
