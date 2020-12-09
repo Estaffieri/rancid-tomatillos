@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./MovieDetails.css";
-import { getSelectedMovie } from '../../apiCalls'
+import { getSelectedMovie } from '../../apiCalls';
+import {Link} from 'react-router-dom';
 
 
 class MovieDetails extends Component {
@@ -23,8 +24,6 @@ class MovieDetails extends Component {
 
   render() {
   let details
-  // console.log(this.state.movieDetails); 
-  // return (<h1>State wat?</h1>)
 
   if(!this.state.movieDetails.id) {
     return <h1>Loading...</h1>
@@ -41,7 +40,9 @@ class MovieDetails extends Component {
           </section>
           <section className="movie-info">
             <section className="go-back-section">
+              <Link to="/">
               <button onClick={() => this.goBackToMain()} className="back-button">Go Back</button>
+              </Link>
             </section>
             <section className="movie-highlights">
               <h3>{this.state.movieDetails.title.toUpperCase()}</h3>
