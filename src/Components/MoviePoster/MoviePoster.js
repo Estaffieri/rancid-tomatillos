@@ -7,7 +7,6 @@ const MoviePoster = ({ id, image, title, rating, displayMovieDetails }) => {
       <Link to={`/${id}`}
           tabIndex={0}
           className="poster"
-          onClick={() => displayMovieDetails(id)}
 >
           <img src={image} id={id} className="poster-image" alt={title} />
 

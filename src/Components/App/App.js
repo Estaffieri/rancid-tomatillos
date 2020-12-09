@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
-import { getAllMovies, getSelectedMovie } from '../../apiCalls.js'
-import { Route, Switch } from "react-router-dom";
+import { getAllMovies } from '../../apiCalls.js'
+import { Route } from "react-router-dom";
 
 
 class App extends Component {
@@ -11,7 +11,6 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      movieDetails: {},
       error: ''
     };
   }
@@ -21,14 +20,14 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
-  displayMovieDetails = (id) => {
-    getSelectedMovie(id).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
-  }
+  // displayMovieDetails = (id) => {
+  //   getSelectedMovie(id).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
+  //   .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+  // }
 
-  goBackToMain = () => {
-    this.setState({movieDetails: {}})
-  }
+  // goBackToMain = () => {
+  //   this.setState({movieDetails: {}})
+  // }
 
   render() {
     return (
@@ -46,7 +45,6 @@ class App extends Component {
             return (
               <MovieContainer
                 movies={this.state.movies}
-                displayMovieDetails={this.displayMovieDetails}
               />
             );
           }}
@@ -55,11 +53,9 @@ class App extends Component {
         <Route
           exact
           path="/:id"
-          render={() => {
+          render={({ match }) => {
             return (
-              <MovieDetails
-                movieDetails={this.state.movieDetails}
-                goBackToMain={this.goBackToMain}
+              <MovieDetails id={match.params.id}
               />
             );
           }}
