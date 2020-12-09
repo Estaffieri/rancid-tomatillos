@@ -19,11 +19,9 @@ const MovieContainer = ({ movies, displayMovieDetails}) => {
   })
 
   return (
-    <section className="movies-container">
-       <Link to="/" style={{textDecoration: "none"}}>
+       <Link to="/" className ="movies-container">
       { posters }
       </Link>
-    </section>
   )
 }
 

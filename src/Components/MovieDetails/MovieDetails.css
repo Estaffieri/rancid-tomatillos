@@ -44,9 +44,19 @@ button {
     border-color: transparent;
 }
 
-h3 {
-    font-size: 2rem;
+a {
+    font-size: 1rem;
     margin-bottom: 0.5em;
+    text-decoration-line: none;
+    color: black;
+    
+}
+a:focus {
+    color: red;
+}
+
+.active {
+    color: black;
 }
 
 .tagline {
