@@ -57,6 +57,9 @@ class MovieDetails extends Component {
               <p id="i">Movie Runtime: {this.state.movieDetails.runtime} mins</p>
               <p id="i">Released: {this.state.movieDetails.release_date}</p>
               <p id="i">Genre: {this.state.movieDetails.genres[0]}</p>
+              <img src={this.state.movieDetails.backdrop_path}
+                  className="backdrop-image"
+                  alt={this.state.movieDetails.title} />
               <p>{this.state.movieDetails.overview}</p>
               <section className="movie-money-info">
               <p>Budget: ${this.state.movieDetails.budget}</p>
@@ -66,12 +69,11 @@ class MovieDetails extends Component {
           </section>
         </section>
         <section className="second-image-section">
-          <img src={this.state.movieDetails.backdrop_path}
-              className="backdrop-image"
-              alt={this.state.movieDetails.title} />
-        </section>
+
+      </section>
       </section>
     );
+
     return (
       <section className="movie-detail-view">
          { details }
