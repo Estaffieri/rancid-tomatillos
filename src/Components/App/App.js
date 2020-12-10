@@ -20,15 +20,6 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
-  // displayMovieDetails = (id) => {
-  //   getSelectedMovie(id).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-  //   .catch(errorMessage => this.setState({error: errorMessage.toString()}))
-  // }
-
-  // goBackToMain = () => {
-  //   this.setState({movieDetails: {}})
-  // }
-
   render() {
     return (
       <main>

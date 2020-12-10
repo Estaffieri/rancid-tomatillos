@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "./MovieDetails.css";
-import { getSelectedMovie } from '../../apiCalls';
-import {Link} from 'react-router-dom';
-
+import { getSelectedMovie, getMovieTrailers } from '../../apiCalls';
+import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -10,20 +12,29 @@ class MovieDetails extends Component {
     this.state = {
       id: this.props.id,
       movieDetails: {},
+      movieTrailers: [],
       error: ''
     }
   }
   componentDidMount() {
-  getSelectedMovie(parseInt(this.state.id)).then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-  .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+  getSelectedMovie(parseInt(this.state.id))
+    .then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
+    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+
+  getMovieTrailers(parseInt(this.state.id))
+    .then(movieTrailers => this.setState({movieTrailers: movieTrailers}))
+    .then(() => this.loadMovieTrailers())
+    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
   goBackToMain = () => {
     this.setState({movieDetails: {}})
+    this.setState({movieTrailer: []})
   }
 
   render() {
-  let details
+  let details;
+
 
   if(!this.state.movieDetails.id) {
     return <h1>Loading...</h1>
@@ -53,6 +64,9 @@ class MovieDetails extends Component {
               <p id="i">Movie Runtime: {this.state.movieDetails.runtime} mins</p>
               <p id="i">Released: {this.state.movieDetails.release_date}</p>
               <p id="i">Genre: {this.state.movieDetails.genres[0]}</p>
+              <img src={this.state.movieDetails.backdrop_path}
+                  className="backdrop-image"
+                  alt={this.state.movieDetails.title} />
               <p>{this.state.movieDetails.overview}</p>
               <section className="movie-money-info">
               <p>Budget: ${this.state.movieDetails.budget}</p>
@@ -61,13 +75,20 @@ class MovieDetails extends Component {
             </section>
           </section>
         </section>
-        <section className="second-image-section">
-          <img src={this.state.movieDetails.backdrop_path}
-              className="backdrop-image"
-              alt={this.state.movieDetails.title} />
-        </section>
+        <section className="movie-trailers">
+        <AliceCarousel>{this.state.movieTrailers.videos.map(video => {
+            // if(video.site === 'Vimeo') {
+            //   return <ReactPlayer url={`https://vimeo.com/${video.key}`} />
+            // } else {
+              return <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} />
+            })}</AliceCarousel>
+          // })
+        // }
+
+      </section>
       </section>
     );
+
     return (
       <section className="movie-detail-view">
          { details }
