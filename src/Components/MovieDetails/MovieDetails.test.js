@@ -4,20 +4,23 @@ import { fireEvent, waitFor, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { displayMovieDetails } from "../App/App";
 import { getAllMovies, getSelectedMovie } from "../../apiCalls";
+import { MemoryRouter } from 'react-router-dom';
 jest.mock("../../apiCalls");
 
 
 describe('Movie Details', () => {
   it ('should display a single movie', async () => {
     render(
-      <MoviePoster
-        id={694919}
-        image="some-image"
-        title="Money Plane"
-        rating={6.666666666666667}
-        displayMovieDetails={jest.fn()}
-        key={694919}
-      />
+      <MemoryRouter>
+        <MoviePoster
+          id={694919}
+          image="some-image"
+          title="Money Plane"
+          rating={6.666666666666667}
+          displayMovieDetails={jest.fn()}
+          key={694919}
+        />
+      </MemoryRouter>
     );
 
     const posterImage = await waitFor(() => screen.getByAltText("Money Plane"));

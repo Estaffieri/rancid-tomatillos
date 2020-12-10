@@ -77,13 +77,10 @@ class MovieDetails extends Component {
         </section>
         <section className="movie-trailers">
         <AliceCarousel>{this.state.movieTrailers.videos.map(video => {
-            // if(video.site === 'Vimeo') {
-            //   return <ReactPlayer url={`https://vimeo.com/${video.key}`} />
-            // } else {
+          
               return <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} />
             })}</AliceCarousel>
-          // })
-        // }
+     
 
       </section>
       </section>
