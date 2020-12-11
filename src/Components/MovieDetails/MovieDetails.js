@@ -10,22 +10,56 @@ class MovieDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
       movieDetails: {},
       movieTrailers: [],
       error: ''
     }
   }
-  componentDidMount() {
-  getSelectedMovie(parseInt(this.state.id))
-    .then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
 
-  getMovieTrailers(parseInt(this.state.id))
+  componentDidMount() {
+    getSelectedMovie(parseInt(this.props.id))
+      .then(selectedMovie => {
+        this.setState({movieDetails: selectedMovie.movie})
+        this.getTrailers()
+      })
+      .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+
+    // getMovieTrailers(parseInt(this.props.id))
+    //   .then(movieTrailers => this.setState({movieTrailers: movieTrailers}))
+    //   .then(() => this.loadMovieTrailers())
+    //   .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+
+    // try {
+    //   let singleMovie;
+    //   let singleMovieTrailers;
+    //   await getSelectedMovie(this.props.id)
+    //     .then(selectedMovie => {singleMovie = selectedMovie})
+    //     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+    //
+    // await getMovieTrailers(this.props.id)
+    //     .then(movieTrailer => {movieTrailer = singleMovieTrailers})
+    //     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+    //
+    //   this.setState({movieTrailers: singleMovieTrailers, movieDetails: singleMovie})
+    //
+    // } catch (error) {
+    //   this.setState({error: 'Sorry, we could not find any movies at this time. Refresh and try again!'})
+    // }
+  }
+
+  getTrailers() {
+    getMovieTrailers(parseInt(this.props.id))
     .then(movieTrailers => this.setState({movieTrailers: movieTrailers}))
     .then(() => this.loadMovieTrailers())
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
+  //refactor with try catch blocks and async await
+  // try {
+    //   const blah = await w/e you call your fetch fn
+    //   this.setState({ stuff: more stuff})
+    // } catch(error) {
+    //   this.setState({ error: 'Whatever you want your message to be' })
+    // }
 
   goBackToMain = () => {
     this.setState({movieDetails: {}})
@@ -34,7 +68,6 @@ class MovieDetails extends Component {
 
   render() {
   let details;
-
 
   if(!this.state.movieDetails.id) {
     return <h1>Loading...</h1>
@@ -76,11 +109,6 @@ class MovieDetails extends Component {
           </section>
         </section>
         <section className="movie-trailers">
-        <AliceCarousel>{this.state.movieTrailers.videos.map(video => {
-          
-              return <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} />
-            })}</AliceCarousel>
-     
 
       </section>
       </section>
