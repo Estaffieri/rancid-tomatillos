@@ -55,7 +55,8 @@ describe('App', () => {
       }
     })
 
-    render(<MoviePoster
+    render(
+    <MoviePoster
       id={ 7456 }
       image= "https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg"
       title="Super Fake Movie"
