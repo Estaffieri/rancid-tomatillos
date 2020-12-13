@@ -3,10 +3,14 @@ import '@testing-library/jest-dom';
 import App from './App';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviePoster from '../MoviePoster/MoviePoster';
+import { BrowserRouter, Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 import { getAllMovies, getSelectedMovie } from '../../apiCalls';
 jest.mock('../../apiCalls');
 
 describe('App', () => {
+  const history = createMemoryHistory();
+
   it('should render a header', () => {
     render(
     <header tabIndex = {0}>
@@ -35,7 +39,7 @@ describe('App', () => {
       }]
     })
 
-    render(<App />)
+    render(<BrowserRouter><App /></BrowserRouter>)
 
     getSelectedMovie.mockResolvedValueOnce({
       movie: {
@@ -56,14 +60,17 @@ describe('App', () => {
     })
 
     render(
-    <MoviePoster
-      id={ 7456 }
-      image= "https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg"
-      title="Super Fake Movie"
-      rating={1.909090909090909}
-      displayMovieDetails = {jest.fn()}
-      key = { 7456 }
-      />)
+      <Router history={history}>
+        <MoviePoster
+          id={ 7456 }
+          image= "https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg"
+          title="Super Fake Movie"
+          rating={1.909090909090909}
+          displayMovieDetails = {jest.fn()}
+          key = { 7456 }
+          />
+      </Router>
+      )
 
     const posterImage = screen.getByAltText("Super Fake Movie")
     fireEvent.click(posterImage)
