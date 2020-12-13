@@ -8,9 +8,9 @@ jest.mock("../../apiCalls");
 
 
 describe('Movie Details', () => {
-    const history = createMemoryHistory();
-    let currentMovie;
-    let currentMovieTrailers;
+  const history = createMemoryHistory();
+  let currentMovie;
+  let currentMovieTrailers;
 
   beforeEach(() => {
 
@@ -66,12 +66,5 @@ describe('Movie Details', () => {
     expect(movieDetailsGenre).toBeInTheDocument();
     expect(movieDetailsRating).toBeInTheDocument();
     expect(movieDetailsRuntime).toBeInTheDocument();
-  })
-
-  it('should display a single movies trailer videos', async () => {
-
-    const movieTrailer = await waitFor(() => screen.getByTestId("242"));
-
-    expect(movieTrailer).toBeInTheDocument();
   })
 })

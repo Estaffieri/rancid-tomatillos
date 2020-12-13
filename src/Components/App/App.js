@@ -46,7 +46,7 @@ class App extends Component {
           path="/movie/:id"
           render={({ match }) => {
             return (
-              <MovieDetails id={match.params.id}
+              <MovieDetails id={match.params.id} key={match.params.id}
               />
             );
           }}

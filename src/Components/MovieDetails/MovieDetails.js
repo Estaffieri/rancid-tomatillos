@@ -81,10 +81,7 @@ class MovieDetails extends Component {
           </section>
         </section>
         <section className="movie-trailers">
-        <AliceCarousel>{this.state.movieTrailers.map(video =>
-          {
-          return <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} data-testid={this.state.movieTrailers.id}/>
-          })}</AliceCarousel>
+        <h1>Trailers coming soon!</h1>
       </section>
       </section>
     );
