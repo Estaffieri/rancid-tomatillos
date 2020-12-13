@@ -55,44 +55,23 @@ describe('Movie Details', () => {
       )
   })
 
-  it ('should display a single movie correctly', async () => {
+  it('should display a single movie correctly', async () => {
 
     const movieDetailsTitle = await waitFor(() => screen.getByText("MONEY PLANE"));
-    expect(movieDetailsTitle).toBeInTheDocument();
+    const movieDetailsGenre = await waitFor(() => screen.getByText("Genre: Action"));
+    const movieDetailsRating = await waitFor(() =>  screen.getByText("Average Rating: ⭐ 6.7"));
+    const movieDetailsRuntime = await waitFor(() => screen.getByText("Movie Runtime: 82 mins"));
 
+    expect(movieDetailsTitle).toBeInTheDocument();
+    expect(movieDetailsGenre).toBeInTheDocument();
+    expect(movieDetailsRating).toBeInTheDocument();
+    expect(movieDetailsRuntime).toBeInTheDocument();
   })
 
-//   it ('should display a single movies trailer videos', async () => {
-//     render(
-//       <MemoryRouter>
-//         <MoviePoster
-//           id={694919}
-//           image="some-image"
-//           title="Money Plane"
-//           rating={6.666666666666667}
-//           displayMovieDetails={jest.fn()}
-//           key={694919}
-//         />
-//       </MemoryRouter>
-//     );
+  it('should display a single movies trailer videos', async () => {
 
-//     const movieTrailer = await waitFor(() => screen.getByTestId("242"));
-//     fireEvent.click(movieTrailer);
+    const movieTrailer = await waitFor(() => screen.getByTestId("242"));
 
-
-
-//         getMovieTrailers.mockResolvedValueOnce({
-//           videos: {
-//             id: 242,
-//             key: "01ON04CwKs",
-//             movie_id: 337401,
-//             site: "YouTube",
-//             type: "Teaser"
-//           },
-//         });
-
-//         expect(movieTrailer).toBeInTheDocument();
-
-// })
-
+    expect(movieTrailer).toBeInTheDocument();
+  })
 })
