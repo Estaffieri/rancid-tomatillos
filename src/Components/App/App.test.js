@@ -3,28 +3,17 @@ import '@testing-library/jest-dom';
 import App from './App';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import MoviePoster from '../MoviePoster/MoviePoster';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { getAllMovies, getSelectedMovie } from '../../apiCalls';
 jest.mock('../../apiCalls');
 
 describe('App', () => {
   const history = createMemoryHistory();
+  let allMovies;
 
-  it('should render a header', () => {
-    render(
-    <header tabIndex = {0}>
-      <h1 className="tomato">&#x1F345;</h1>
-      <h1 className="title">RANCID TOMATILLOS</h1>
-      <h1 className="tomato">&#x1F345;</h1>
-    </header>
-    )
-
-    expect(screen.getByText("RANCID TOMATILLOS")).toBeInTheDocument()
-  })
-
-  it('should render movie details', async () => {
-    getAllMovies.mockResolvedValueOnce({
+  beforeEach(() => {
+    allMovies = {
       movies: [
       {
         id: 7456,
@@ -37,9 +26,24 @@ describe('App', () => {
         release_date: "2020-09-04",
         key: 7456,
       }]
-    })
+    }
 
-    render(<BrowserRouter><App /></BrowserRouter>)
+    getAllMovies.mockResolvedValueOnce(allMovies);
+
+    render(<Router history={history}><App /></Router>)
+  })
+
+  it('should render a header', () => {
+    expect(screen.getByText("RANCID TOMATILLOS")).toBeInTheDocument()
+  })
+
+  it('should render movie posters', async () => {
+    expect(screen.getByText("Super Fake Movie")).toBeInTheDocument()
+    expect(screen.getByAltText("Super Fake Movie")).toBeInTheDocument()
+    expect(screen.getByText(1.9)).toBeInTheDocument()
+  })
+
+  it('should render movie details when a poster is clicked', async () => {
 
     getSelectedMovie.mockResolvedValueOnce({
       movie: {
@@ -59,23 +63,10 @@ describe('App', () => {
       }
     })
 
-    render(
-      <Router history={history}>
-        <MoviePoster
-          id={ 7456 }
-          image= "https://image.tmdb.org/t/p/original//7G2VvG1lU8q758uOqU6z2Ds0qpA.jpg"
-          title="Super Fake Movie"
-          rating={1.909090909090909}
-          displayMovieDetails = {jest.fn()}
-          key = { 7456 }
-          />
-      </Router>
-      )
-
     const posterImage = screen.getByAltText("Super Fake Movie")
     fireEvent.click(posterImage)
 
-    const movieTitle = await waitFor(() => screen.getByText("Super Fake Movie"))
+    const movieTitle = await waitFor(() => screen.getByText("SUPER FAKE MOVIE"))
     expect(movieTitle).toBeInTheDocument()
   })
 })
