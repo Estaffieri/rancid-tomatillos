@@ -9,7 +9,9 @@ class Search extends Component {
         }
     }
     searchByInput = (e) => {
-        this.setState({input: e.target.value})
+        e.preventDefault()
+        this.setState({input: e.target.value.toLowerCase()})
+        this.props.inputValue(e.target.value)
     }
     render() {
         return(

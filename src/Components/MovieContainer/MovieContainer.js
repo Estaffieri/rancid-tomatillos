@@ -1,9 +1,8 @@
 import React from 'react';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import './MovieContainer.css';
-import { Link } from 'react-router-dom';
 
-const MovieContainer = ({ movies, displayMovieDetails}) => {
+const MovieContainer = ({ movies, displayMovieDetails }) => {
 
   const posters = movies.map(movie => {
     return (

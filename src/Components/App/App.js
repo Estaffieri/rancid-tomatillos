@@ -12,7 +12,8 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      error: ''
+      error: '',
+      input: ''
     };
   }
 
@@ -34,6 +35,17 @@ class App extends Component {
       this.setState({ movies: sortedMoviesByRating });
     }
   }
+  getUserInput = (inputValue) => {
+    this.setState({input: inputValue})
+  }
+
+  get filterMoviesByTitle() {
+   const filteredMovies = this.state.movies.filter(movie => {
+     return movie.title.toLowerCase().includes(this.state.input)
+    })
+
+   return filteredMovies
+  }
 
   render() {
     return (
@@ -45,7 +57,7 @@ class App extends Component {
             <h1 className="tomato">&#x1F345;</h1>
           </section>
           <section className="search">
-            <Search />
+            <Search inputValue={this.getUserInput} />
           </section>
           <section className="filtering-buttons">
             <button onClick={() => this.sortMovieRatings("bw")}>
@@ -61,7 +73,7 @@ class App extends Component {
           exact
           path="/"
           render={() => {
-            return <MovieContainer movies={this.state.movies} />;
+            return <MovieContainer movies={this.filterMoviesByTitle}  />;
           }}
         />
 
