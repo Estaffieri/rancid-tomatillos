@@ -4,9 +4,15 @@
 
 header {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #C4BDAC;
+}
+.logo {
+  display: flex;
+  align-items: center;
+
 }
 
 .title {
@@ -57,4 +63,8 @@ h2 {
   display: flex;
   justify-content: center;
   font-size: 0.9em;
+}
+
+.filtering-buttons {
+  display: flex;
 }

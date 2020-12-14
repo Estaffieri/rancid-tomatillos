@@ -4,6 +4,7 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
 import { getAllMovies } from '../../apiCalls.js'
 import { Route } from "react-router-dom";
+import Search from '../Search/Search';
 
 
 class App extends Component {
@@ -38,11 +39,22 @@ class App extends Component {
     return (
       <main>
         <header tabIndex={0}>
-          <h1 className="tomato">&#x1F345;</h1>
-          <h1 className="title">RANCID TOMATILLOS</h1>
-          <h1 className="tomato">&#x1F345;</h1>
-          <button onClick={() => this.sortMovieRatings("bw")}>Ratings Best to Worst</button>
-          <button onClick={() => this.sortMovieRatings("wb")}>Ratings Worst to Best</button>
+          <section className="logo">
+            <h1 className="tomato">&#x1F345;</h1>
+            <h1 className="title">RANCID TOMATILLOS</h1>
+            <h1 className="tomato">&#x1F345;</h1>
+          </section>
+          <section className="search">
+            <Search />
+          </section>
+          <section className="filtering-buttons">
+            <button onClick={() => this.sortMovieRatings("bw")}>
+              Ratings Best to Worst
+            </button>
+            <button onClick={() => this.sortMovieRatings("wb")}>
+              Ratings Worst to Best
+            </button>
+          </section>
         </header>
 
         <Route
