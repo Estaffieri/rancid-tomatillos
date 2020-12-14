@@ -20,10 +20,18 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
-  movieRatings = () => {
+  sortMovieRatings = (sortedBy) => {
+    if( sortedBy === "bw" ) {
     const sortedMoviesByRating = this.state.movies.sort((a, b) => b.average_rating - a.average_rating)
     console.log(sortedMoviesByRating)
     this.setState({movies: sortedMoviesByRating})
+    } else {
+      const sortedMoviesByRating = this.state.movies.sort(
+        (a, b) => a.average_rating - b.average_rating
+      );
+      console.log(sortedMoviesByRating);
+      this.setState({ movies: sortedMoviesByRating });
+    }
   }
 
   render() {
@@ -33,18 +41,15 @@ class App extends Component {
           <h1 className="tomato">&#x1F345;</h1>
           <h1 className="title">RANCID TOMATILLOS</h1>
           <h1 className="tomato">&#x1F345;</h1>
-          <button onClick={this.movieRatings}>ratings best to worst</button> 
+          <button onClick={() => this.sortMovieRatings("bw")}>Ratings Best to Worst</button>
+          <button onClick={() => this.sortMovieRatings("wb")}>Ratings Worst to Best</button>
         </header>
 
         <Route
           exact
           path="/"
           render={() => {
-            return (
-              <MovieContainer
-                movies={this.state.movies}
-              />
-            );
+            return <MovieContainer movies={this.state.movies} />;
           }}
         />
 
@@ -52,10 +57,7 @@ class App extends Component {
           exact
           path="/movie/:id"
           render={({ match }) => {
-            return (
-              <MovieDetails id={match.params.id} key={match.params.id}
-              />
-            );
+            return <MovieDetails id={match.params.id} key={match.params.id} />;
           }}
         />
       </main>
