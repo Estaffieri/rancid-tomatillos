@@ -20,6 +20,12 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
+  movieRatings = () => {
+    const sortedMoviesByRating = this.state.movies.sort((a, b) => b.average_rating - a.average_rating)
+    console.log(sortedMoviesByRating)
+    this.setState({movies: sortedMoviesByRating})
+  }
+
   render() {
     return (
       <main>
@@ -27,6 +33,7 @@ class App extends Component {
           <h1 className="tomato">&#x1F345;</h1>
           <h1 className="title">RANCID TOMATILLOS</h1>
           <h1 className="tomato">&#x1F345;</h1>
+          <button onClick={this.movieRatings}>ratings best to worst</button> 
         </header>
 
         <Route
