@@ -2,9 +2,13 @@ import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../App/App';
 import { getAllMovies } from '../../apiCalls';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
 jest.mock('../../apiCalls');
 
 describe('Movie Container', () => {
+  const history = createMemoryHistory();
+
   it('should display all movies', async () => {
 
     getAllMovies.mockResolvedValueOnce({
@@ -34,7 +38,7 @@ describe('Movie Container', () => {
       ],
     });
 
-    render(<App />);
+    render(<Router history={history}><App /></Router>);
     const movieTitle1 = await waitFor(() => screen.getByText("Super Fake Movie"));
     const movieTitle2 = await waitFor(() => screen.getByText("Very Real Fake Movie"))
 
