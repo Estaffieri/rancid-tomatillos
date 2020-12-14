@@ -10,19 +10,25 @@ class MovieDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
       movieDetails: {},
       movieTrailers: [],
       error: ''
     }
   }
-  componentDidMount() {
-  getSelectedMovie(parseInt(this.state.id))
-    .then(selectedMovie => this.setState({movieDetails: selectedMovie.movie}))
-    .catch(errorMessage => this.setState({error: errorMessage.toString()}))
 
-  getMovieTrailers(parseInt(this.state.id))
-    .then(movieTrailers => this.setState({movieTrailers: movieTrailers}))
+  componentDidMount() {
+    getSelectedMovie(parseInt(this.props.id))
+      .then(selectedMovie => {
+        this.setState({movieDetails: selectedMovie.movie})
+        this.getTrailers()
+      })
+      .catch(errorMessage => this.setState({error: errorMessage.toString()}))
+
+  }
+
+  getTrailers() {
+    getMovieTrailers(parseInt(this.props.id))
+    .then(movieTrailers => this.setState({movieTrailers: movieTrailers.videos}))
     .then(() => this.loadMovieTrailers())
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
@@ -34,7 +40,6 @@ class MovieDetails extends Component {
 
   render() {
   let details;
-
 
   if(!this.state.movieDetails.id) {
     return <h1>Loading...</h1>
@@ -76,15 +81,7 @@ class MovieDetails extends Component {
           </section>
         </section>
         <section className="movie-trailers">
-        <AliceCarousel>{this.state.movieTrailers.videos.map(video => {
-            // if(video.site === 'Vimeo') {
-            //   return <ReactPlayer url={`https://vimeo.com/${video.key}`} />
-            // } else {
-              return <ReactPlayer url={`https://www.youtube.com/watch?v=${video.key}`} />
-            })}</AliceCarousel>
-          // })
-        // }
-
+        <h1>Trailers coming soon!</h1>
       </section>
       </section>
     );
