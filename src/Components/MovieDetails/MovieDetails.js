@@ -3,8 +3,8 @@ import "./MovieDetails.css";
 import { getSelectedMovie, getMovieTrailers } from '../../apiCalls';
 import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -36,6 +36,14 @@ class MovieDetails extends Component {
   goBackToMain = () => {
     this.setState({movieDetails: {}})
     this.setState({movieTrailer: []})
+  }
+  
+  displayMovieTrailers = () => {
+    const selectedMovieTrailers = this.state.movieTrailers.map(video => {
+    return (<ReactPlayer key={video.id} 
+    url={`https://www.youtube.com/embed/${video.key}`} />)
+    })
+    return selectedMovieTrailers
   }
 
   render() {
@@ -81,7 +89,12 @@ class MovieDetails extends Component {
           </section>
         </section>
         <section className="movie-trailers">
-        <h1>Trailers coming soon!</h1>
+          <Carousel>   
+            {this.state.movieTrailers.map(video => {
+                return (<ReactPlayer key={video.id} 
+                url={`https://www.youtube.com/embed/${video.key}`} />)
+    })}
+          </Carousel>
       </section>
       </section>
     );
