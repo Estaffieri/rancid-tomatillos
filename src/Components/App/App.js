@@ -75,7 +75,7 @@ class App extends Component {
           exact
           path="/"
           render={() => {
-            return <MovieContainer movies={this.filterMoviesByTitle}  />;
+            return <MovieContainer movies={this.filterMoviesByTitle} />;
           }}
         />
 
