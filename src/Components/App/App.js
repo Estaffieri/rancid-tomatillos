@@ -27,7 +27,6 @@ class App extends Component {
     let sortedMovies;
 
     if(input === "best") {
-      console.log(this.state.movies)
        sortedMovies = this.state.movies.sort(
         (a, b) => b.average_rating - a.average_rating
       );
