@@ -1,9 +1,8 @@
 import React from 'react';
 import MoviePoster from '../MoviePoster/MoviePoster';
 import './MovieContainer.css';
-import { Link } from 'react-router-dom';
 
-const MovieContainer = ({ movies, displayMovieDetails}) => {
+const MovieContainer = ({ movies, displayMovieDetails }) => {
 
   const posters = movies.map(movie => {
     return (
@@ -19,9 +18,9 @@ const MovieContainer = ({ movies, displayMovieDetails}) => {
   })
 
   return (
-       <Link to="/" className ="movies-container">
+       <section className ="movies-container">
       { posters }
-      </Link>
+      </section>
   )
 }
 

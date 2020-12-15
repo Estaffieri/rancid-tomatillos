@@ -4,6 +4,7 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 import './App.css';
 import { getAllMovies } from '../../apiCalls.js'
 import { Route } from "react-router-dom";
+import Search from '../Search/Search';
 
 
 class App extends Component {
@@ -11,7 +12,8 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      error: ''
+      error: '',
+      input: ''
     };
   }
 
@@ -20,24 +22,60 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
+  sortMovieRatings(input) {
+    let sortedMoviesByRating;
+
+    if(input === "b") {
+       sortedMoviesByRating = this.state.movies.sort(
+        (a, b) => b.average_rating - a.average_rating
+      );
+    } else {
+        sortedMoviesByRating = this.state.movies.sort(
+        (a, b) => a.average_rating - b.average_rating
+      );
+    }
+          this.setState({ movies: sortedMoviesByRating });
+  }
+  
+  getUserInput = (inputValue) => {
+    this.setState({input: inputValue})
+  }
+
+  get filterMoviesByTitle() {
+   const filteredMovies = this.state.movies.filter(movie => {
+     return movie.title.toLowerCase().includes(this.state.input)
+    })
+
+   return filteredMovies
+  }
+
   render() {
     return (
       <main>
         <header tabIndex={0}>
-          <h1 className="tomato">&#x1F345;</h1>
-          <h1 className="title">RANCID TOMATILLOS</h1>
-          <h1 className="tomato">&#x1F345;</h1>
+          <section className="logo">
+            <h1 className="tomato">&#x1F345;</h1>
+            <h1 className="title">RANCID TOMATILLOS</h1>
+            <h1 className="tomato">&#x1F345;</h1>
+          </section>
+          <section className="search">
+            <Search inputValue={this.getUserInput} />
+          </section>
+          <section className="filtering-buttons">
+            <button onClick={() => this.sortMovieRatings("b")}>
+              Ratings Best to Worst
+            </button>
+            <button onClick={() => this.sortMovieRatings("w")}>
+              Ratings Worst to Best
+            </button>
+          </section>
         </header>
 
         <Route
           exact
           path="/"
           render={() => {
-            return (
-              <MovieContainer
-                movies={this.state.movies}
-              />
-            );
+            return <MovieContainer movies={this.filterMoviesByTitle} />;
           }}
         />
 
@@ -45,10 +83,7 @@ class App extends Component {
           exact
           path="/movie/:id"
           render={({ match }) => {
-            return (
-              <MovieDetails id={match.params.id} key={match.params.id}
-              />
-            );
+            return <MovieDetails id={match.params.id} key={match.params.id} />;
           }}
         />
       </main>
