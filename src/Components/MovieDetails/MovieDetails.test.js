@@ -67,4 +67,10 @@ describe('Movie Details', () => {
     expect(movieDetailsRating).toBeInTheDocument();
     expect(movieDetailsRuntime).toBeInTheDocument();
   })
+
+  it('should display a movies trailers', async () => {
+    const movieTrailerId = await waitFor(() => screen.getByTestId(242))
+
+    expect(movieTrailerId).toBeInTheDocument();
+  })
 })

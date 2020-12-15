@@ -89,9 +89,9 @@ class MovieDetails extends Component {
           </section>
         </section>
         <section className="movie-trailers">
-          <Carousel>   
+          <Carousel showThumbs={false}>   
             {this.state.movieTrailers.map(video => {
-                return (<ReactPlayer key={video.id} 
+                return (<ReactPlayer data-testid={video.id} key={video.id} 
                 url={`https://www.youtube.com/embed/${video.key}`} />)
     })}
           </Carousel>
