@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
+import Header from '../Header/Header';
 import './App.css';
 import { getAllMovies } from '../../apiCalls.js'
 import { Route } from "react-router-dom";
@@ -22,21 +23,22 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
-  sortMovieRatings(input) {
-    let sortedMoviesByRating;
+  sortMovieRatings = (input) => {
+    let sortedMovies;
 
-    if(input === "b") {
-       sortedMoviesByRating = this.state.movies.sort(
+    if(input === "best") {
+      console.log(this.state.movies)
+       sortedMovies = this.state.movies.sort(
         (a, b) => b.average_rating - a.average_rating
       );
     } else {
-        sortedMoviesByRating = this.state.movies.sort(
+        sortedMovies = this.state.movies.sort(
         (a, b) => a.average_rating - b.average_rating
       );
     }
-          this.setState({ movies: sortedMoviesByRating });
+    this.setState({ movies: sortedMovies });
   }
-  
+
   getUserInput = (inputValue) => {
     this.setState({input: inputValue})
   }
@@ -58,17 +60,17 @@ class App extends Component {
             <h1 className="title">RANCID TOMATILLOS</h1>
             <h1 className="tomato">&#x1F345;</h1>
           </section>
-          <section className="search">
-            <Search inputValue={this.getUserInput} />
-          </section>
-          <section className="filtering-buttons">
-            <button onClick={() => this.sortMovieRatings("b")}>
-              Ratings Best to Worst
-            </button>
-            <button onClick={() => this.sortMovieRatings("w")}>
-              Ratings Worst to Best
-            </button>
-          </section>
+            <Route exact path="/"
+              render={() => {
+              return (
+              <section>
+                <section className="search">
+                  <Search inputValue={this.getUserInput} />
+                </section>
+                <Header sortMovieRatings={this.sortMovieRatings}/>
+              </section>)
+            }}
+            />
         </header>
 
         <Route

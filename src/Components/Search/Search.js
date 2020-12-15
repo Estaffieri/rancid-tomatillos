@@ -15,10 +15,10 @@ class Search extends Component {
     }
     render() {
         return(
-            <input onChange={this.searchByInput} type="text" value={this.state.input} placeholder="Search By Title"></input>
+            <input onChange={this.searchByInput} type="text" value={this.state.input} placeholder="Search by Title"></input>
         )
     }
-    
+
 }
 
 export default Search;
