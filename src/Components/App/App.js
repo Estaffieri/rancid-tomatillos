@@ -23,20 +23,20 @@ class App extends Component {
   }
 
   sortMovieRatings(input) {
-    let sortedMoviesByRating;
+    let sortedMovies;
 
-    if(input === "b") {
-       sortedMoviesByRating = this.state.movies.sort(
+    if(input === "best") {
+       sortedMovies = this.state.movies.sort(
         (a, b) => b.average_rating - a.average_rating
       );
     } else {
-        sortedMoviesByRating = this.state.movies.sort(
+        sortedMovies = this.state.movies.sort(
         (a, b) => a.average_rating - b.average_rating
       );
     }
-          this.setState({ movies: sortedMoviesByRating });
+    this.setState({ movies: sortedMovies });
   }
-  
+
   getUserInput = (inputValue) => {
     this.setState({input: inputValue})
   }
@@ -62,10 +62,10 @@ class App extends Component {
             <Search inputValue={this.getUserInput} />
           </section>
           <section className="filtering-buttons">
-            <button onClick={() => this.sortMovieRatings("b")}>
+            <button onClick={() => this.sortMovieRatings("best")}>
               Ratings Best to Worst
             </button>
-            <button onClick={() => this.sortMovieRatings("w")}>
+            <button onClick={() => this.sortMovieRatings("worst")}>
               Ratings Worst to Best
             </button>
           </section>

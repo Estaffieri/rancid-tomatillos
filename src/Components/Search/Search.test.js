@@ -31,7 +31,6 @@ describe('Search', () => {
   })
 
   it('displays the user input', () => {
-
     const searchField = screen.getByPlaceholderText("Search by Title")
     const userInput = "mulan"
 
