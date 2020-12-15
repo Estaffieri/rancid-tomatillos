@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MovieContainer from '../MovieContainer/MovieContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
+import Header from '../Header/Header';
 import './App.css';
 import { getAllMovies } from '../../apiCalls.js'
 import { Route } from "react-router-dom";
@@ -22,10 +23,11 @@ class App extends Component {
     .catch(errorMessage => this.setState({error: errorMessage.toString()}))
   }
 
-  sortMovieRatings(input) {
+  sortMovieRatings = (input) => {
     let sortedMovies;
 
     if(input === "best") {
+      console.log(this.state.movies)
        sortedMovies = this.state.movies.sort(
         (a, b) => b.average_rating - a.average_rating
       );
@@ -61,14 +63,7 @@ class App extends Component {
           <section className="search">
             <Search inputValue={this.getUserInput} />
           </section>
-          <section className="filtering-buttons">
-            <button onClick={() => this.sortMovieRatings("best")}>
-              Ratings Best to Worst
-            </button>
-            <button onClick={() => this.sortMovieRatings("worst")}>
-              Ratings Worst to Best
-            </button>
-          </section>
+            <Header sortMovieRatings={this.sortMovieRatings}/>
         </header>
 
         <Route
