@@ -1,10 +1,9 @@
-p {
-  font-weight: bold;
-  font-size: 1.5em;
+.poster {
+  text-align: center;
 }
 
-.poster {
-text-align: center;
+.title {
+  font-size: 1.2em;
 }
 
 .poster-image {
@@ -15,4 +14,9 @@ text-align: center;
 .poster-image:hover {
   cursor: pointer;
   opacity: 1;
+  box-shadow: 5px 10px #C4BDAC;
+}
+
+.rating {
+  font-size: 0.9em;
 }

@@ -8,15 +8,17 @@ header {
   align-items: center;
   justify-content: center;
   background-color: #C4BDAC;
+  font-size: 2em;
+
 }
 .logo {
   display: flex;
   align-items: center;
-
 }
 
 .title {
   font-family: "Roboto", sans-serif;
+  margin-bottom: 0em;
 }
 
 .tomato {
@@ -24,6 +26,7 @@ header {
   padding-right: 1vw;
   display: inline-block;
   pointer-events: none;
+  margin-bottom: 0em;
 }
 
 @media (prefers-reduced-motion: no-preference) {

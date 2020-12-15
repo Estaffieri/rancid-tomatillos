@@ -8,10 +8,8 @@ const MoviePoster = ({ id, image, title, rating, displayMovieDetails }) => {
         tabIndex={0}
         className="poster">
           <img src={image} id={id} className="poster-image" alt={title} />
-
-          <h3>{title}</h3>
-          <p>&#11088;</p>
-          <p>{rating.toFixed(1)}</p>
+          <h3 className="title">{title}</h3>
+          <p className="rating">Average Rating: &#11088;{rating.toFixed(1)}</p>
       </Link>
     );
 }
