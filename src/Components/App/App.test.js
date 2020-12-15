@@ -37,6 +37,12 @@ describe('App', () => {
     expect(screen.getByText("RANCID TOMATILLOS")).toBeInTheDocument()
   })
 
+  it('should render search field and sort buttons', () => {
+    expect(screen.getByPlaceholderText("Search By Title")).toBeInTheDocument()
+    expect(screen.getByText("Ratings Best to Worst")).toBeInTheDocument()
+    expect(screen.getByText("Ratings Worst to Best")).toBeInTheDocument()
+  })
+
   it('should render movie posters', async () => {
     expect(screen.getByText("Super Fake Movie")).toBeInTheDocument()
     expect(screen.getByAltText("Super Fake Movie")).toBeInTheDocument()
