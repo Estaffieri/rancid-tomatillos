@@ -37,10 +37,10 @@ class MovieDetails extends Component {
     this.setState({movieDetails: {}})
     this.setState({movieTrailer: []})
   }
-  
+
   displayMovieTrailers = () => {
     const selectedMovieTrailers = this.state.movieTrailers.map(video => {
-    return (<ReactPlayer key={video.id} 
+    return (<ReactPlayer key={video.id}
     url={`https://www.youtube.com/embed/${video.key}`} />)
     })
     return selectedMovieTrailers
@@ -54,48 +54,52 @@ class MovieDetails extends Component {
   } else {
     details = (
       <section>
-        <section className="macro-container">
-          <section tabIndex={0} className="poster">
-            <img
-              src={this.state.movieDetails.poster_path}
-              className="movie-image"
-              alt={this.state.movieDetails.title}
-            />
-          </section>
+        <section className="movie-details">
+          <section className="movie-facts">
+            <section className="poster-image">
+              <img
+               src={this.state.movieDetails.poster_path}
+               className="movie-image"
+               alt={this.state.movieDetails.title}/>
+              </section>
+              <section className="movie-highlights">
+                <h4>Movie Summary:</h4>
+                <p>{this.state.movieDetails.overview}</p>
+                <h4>Movie Runtime:</h4>
+                <p>{this.state.movieDetails.runtime} mins</p>
+                <h4>Released:</h4>
+                <p>{this.state.movieDetails.release_date}</p>
+                <h4>Genre:</h4>
+                <p> {this.state.movieDetails.genres[0]}</p>
+                <h4>Budget:</h4>
+                <p> ${this.state.movieDetails.budget}</p>
+                <h4>Revenue:</h4>
+                <p> ${this.state.movieDetails.revenue}</p>
+              </section>
+            </section>
           <section className="movie-info">
             <section className="go-back-section">
               <Link to="/">
-              <button onClick={() => this.goBackToMain()} className="back-button">Go Back</button>
+                <button onClick={() => this.goBackToMain()} className="back-button">GO BACK</button>
               </Link>
             </section>
-            <section className="movie-highlights">
+            <section className="header-info">
               <h3>{this.state.movieDetails.title.toUpperCase()}</h3>
-              <p className="tagline">{this.state.movieDetails.tagline}</p>
-              <p>Average Rating: &#11088; {this.state.movieDetails.average_rating.toFixed(1)}</p>
-            </section>
-            <section className="movie-facts">
-              <p id="i">Movie Runtime: {this.state.movieDetails.runtime} mins</p>
-              <p id="i">Released: {this.state.movieDetails.release_date}</p>
-              <p id="i">Genre: {this.state.movieDetails.genres[0]}</p>
-              <img src={this.state.movieDetails.backdrop_path}
-                  className="backdrop-image"
-                  alt={this.state.movieDetails.title} />
-              <p>{this.state.movieDetails.overview}</p>
-              <section className="movie-money-info">
-              <p>Budget: ${this.state.movieDetails.budget}</p>
-              <p>Revenue: ${this.state.movieDetails.revenue}</p>
-            </section>
+                <p className="tagline">{this.state.movieDetails.tagline}</p>
+                <p className="tagline">Average Rating: &#11088; {this.state.movieDetails.average_rating.toFixed(1)}</p>
+
             </section>
           </section>
         </section>
         <section className="movie-trailers">
-          <Carousel showThumbs={false}>   
+          <Carousel showThumbs={false}>
             {this.state.movieTrailers.map(video => {
-                return (<ReactPlayer data-testid={video.id} key={video.id} 
+                return (<ReactPlayer data-testid={video.id} key={video.id}
                 url={`https://www.youtube.com/embed/${video.key}`} />)
-    })}
+              })
+            }
           </Carousel>
-      </section>
+        </section>
       </section>
     );
 
