@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom';
 import Search from './Search';
 import { Router } from 'react-router-dom';
@@ -25,6 +26,14 @@ describe('Search', () => {
     fireEvent.change(searchField, { target: { value: userInput } })
 
     expect(screen.getByDisplayValue(userInput)).toBeInTheDocument()
+  })
+
+  it('should update input on change', () => {
+    const searchField = screen.getByPlaceholderText('Search by Title')
+    userEvent.type(searchField, "movie title")
+
+    expect(mockInputValue).toHaveBeenCalled()
+    expect(searchField.value).toContain("movie title")
   })
 
 })
