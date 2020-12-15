@@ -60,10 +60,17 @@ class App extends Component {
             <h1 className="title">RANCID TOMATILLOS</h1>
             <h1 className="tomato">&#x1F345;</h1>
           </section>
-          <section className="search">
-            <Search inputValue={this.getUserInput} />
-          </section>
-            <Header sortMovieRatings={this.sortMovieRatings}/>
+            <Route exact path="/"
+              render={() => {
+              return (
+              <section>
+                <section className="search">
+                  <Search inputValue={this.getUserInput} />
+                </section>
+                <Header sortMovieRatings={this.sortMovieRatings}/>
+              </section>)
+            }}
+            />
         </header>
 
         <Route
