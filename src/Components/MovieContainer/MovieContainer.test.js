@@ -47,6 +47,12 @@ describe('Movie Container', () => {
 
   })
 
+  it('should not show the search field on the movie details', () => {
+    const searchField = screen.queryByText('Search by Title')
+
+    expect(searchField).not.toBeInTheDocument();
+  })
+
   it('should not show the ratings buttons on the movie details', () => {
     const bestToWorstRatingButton = screen.queryByText('Ratings Best to Worst')
     const worstToBestRatingButton = screen.queryByText('Ratings Worst to Best')
