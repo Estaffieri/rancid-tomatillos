@@ -29,7 +29,7 @@ describe('Movie Details', () => {
         budget: 0,
         revenue: 0,
         runtime: 82,
-        tagline: "",
+        tagline: "Tagline goes here",
         average_rating: 6.666666666666667,
       }};
 
@@ -58,12 +58,12 @@ describe('Movie Details', () => {
   it('should display a single movie correctly', async () => {
 
     const movieDetailsTitle = await waitFor(() => screen.getByText("MONEY PLANE"));
-    const movieDetailsGenre = await waitFor(() => screen.getByText("Genre: Action"));
+    const movieDetailsTagline = await waitFor(() => screen.getByText("Tagline goes here"));
     const movieDetailsRating = await waitFor(() =>  screen.getByText("Average Rating: ⭐ 6.7"));
-    const movieDetailsRuntime = await waitFor(() => screen.getByText("Movie Runtime: 82 mins"));
+    const movieDetailsRuntime = await waitFor(() => screen.getByText("82 mins"));
 
     expect(movieDetailsTitle).toBeInTheDocument();
-    expect(movieDetailsGenre).toBeInTheDocument();
+    expect(movieDetailsTagline).toBeInTheDocument();
     expect(movieDetailsRating).toBeInTheDocument();
     expect(movieDetailsRuntime).toBeInTheDocument();
   })

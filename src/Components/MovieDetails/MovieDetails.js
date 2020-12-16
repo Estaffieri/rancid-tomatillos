@@ -54,6 +54,16 @@ class MovieDetails extends Component {
   } else {
     details = (
       <section>
+      <section className="go-back-section">
+        <Link to="/">
+          <button onClick={() => this.goBackToMain()} className="back-button">GO BACK</button>
+        </Link>
+      </section>
+      <section className="header-info">
+        <h3>{this.state.movieDetails.title.toUpperCase()}</h3>
+          <p className="tagline">{this.state.movieDetails.tagline}</p>
+          <p className="tagline">Average Rating: &#11088; {this.state.movieDetails.average_rating.toFixed(1)}</p>
+      </section>
         <section className="movie-details">
           <section className="movie-facts">
             <section>
@@ -68,29 +78,19 @@ class MovieDetails extends Component {
                 <h4>Movie Runtime:</h4>
                 <p>{this.state.movieDetails.runtime} mins</p>
                 <h4>Released:</h4>
-                <p>{this.state.movieDetails.release_date}</p>
+                <p>{new Date(this.state.movieDetails.release_date).toLocaleDateString()}</p>
                 <h4>Genre:</h4>
                 <p> {this.state.movieDetails.genres[0]}</p>
                 <h4>Budget:</h4>
-                <p> ${this.state.movieDetails.budget}</p>
+                <p> ${new Intl.NumberFormat('en-US').format(this.state.movieDetails.budget)}</p>
                 <h4>Revenue:</h4>
-                <p> ${this.state.movieDetails.revenue}</p>
+                <p> ${new Intl.NumberFormat('en-US').format(this.state.movieDetails.revenue)}</p>
               </section>
             </section>
           <section className="movie-info">
-            <section className="go-back-section">
-              <Link to="/">
-                <button onClick={() => this.goBackToMain()} className="back-button">GO BACK</button>
-              </Link>
-            </section>
-            <section className="header-info">
-              <h3>{this.state.movieDetails.title.toUpperCase()}</h3>
-                <p className="tagline">{this.state.movieDetails.tagline}</p>
-                <p className="tagline">Average Rating: &#11088; {this.state.movieDetails.average_rating.toFixed(1)}</p>
-                <img src={this.state.movieDetails.backdrop_path}
-                 className="backdrop-image"
-                 alt={this.state.movieDetails.title} />
-            </section>
+          <img src={this.state.movieDetails.backdrop_path}
+           className="backdrop-image"
+           alt={this.state.movieDetails.title} />
             <section className="movie-trailers">
               <Carousel showThumbs={false} width={650}>
                 {this.state.movieTrailers.map(video => {
