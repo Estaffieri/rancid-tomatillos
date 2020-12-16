@@ -66,7 +66,7 @@ class App extends Component {
                 <section className="search">
                   <Search inputValue={this.getUserInput} />
                 </section>
-                <Header sortMovieRatings={this.sortMovieRatings}/>
+                <Header sortMovieRatings={this.sortMovieRatings} />
               </section>)
             }}
             />

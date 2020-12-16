@@ -70,13 +70,13 @@ describe('App', () => {
   it('should render movie posters', async () => {
     expect(screen.getByText("Super Fake Movie")).toBeInTheDocument()
     expect(screen.getByAltText("Super Fake Movie")).toBeInTheDocument()
-    expect(screen.getByText(1.9)).toBeInTheDocument()
+    expect(screen.getByText("Average Rating: ⭐1.9")).toBeInTheDocument()
   })
 
 
   it('should render movie details when a poster is clicked', async () => {
 
-        
+
     const posterImage = screen.getByAltText("Super Fake Movie")
     fireEvent.click(posterImage)
 

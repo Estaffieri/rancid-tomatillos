@@ -26,6 +26,6 @@ describe('Movie Poster', () => {
 
   it('should render a movie poster', () => {
     expect(screen.getByText("Best Movie Ever")).toBeInTheDocument();
-    expect(screen.getByAltText("Best Movie Ever")).toBeInTheDocument(); expect(screen.getByText(9.5)).toBeInTheDocument()
+    expect(screen.getByAltText("Best Movie Ever")).toBeInTheDocument(); expect(screen.getByText("Average Rating: ⭐9.5")).toBeInTheDocument()
   })
 })
