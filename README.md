@@ -9,7 +9,6 @@ This application allows a user to view a selection of movies and click into each
 - Learn how to test React components & asynchronous JS
 - Practice refactoring a multi-page UX using Router
 ## Functionality
-![gif of Website Functionality](https://media.giphy.com/media/QzId1JiOGHKrvupo0z/giphy.gif)
 ![gif of Live Search](https://media.giphy.com/media/g4edw3ltGFdcbLTkwy/giphy.gif)
 - Using API calls to get data for the movies:
     - Movie details
