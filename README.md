@@ -4,8 +4,6 @@ This application allows a user to view a selection of movies and click into each
 - [Project Brief and Rubric](https://frontend.turing.io/projects/module-3/rancid-tomatillos-v3.html)
 - [Deployed GitHub Page](https://alyssabull.github.io/rancid-tomatillos/)
 
-![Homepage view]()
-![Movie Detail view]()
 ## Learning Goals
 - Gain competency with React fundamentals
 - Learn how to test React components & asynchronous JS
