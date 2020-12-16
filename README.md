@@ -11,6 +11,8 @@ This application allows a user to view a selection of movies and click into each
 - Learn how to test React components & asynchronous JS
 - Practice refactoring a multi-page UX using Router
 ## Functionality
+![gif of Website Functionality](https://media.giphy.com/media/QzId1JiOGHKrvupo0z/giphy.gif)
+![gif of Live Search](https://media.giphy.com/media/g4edw3ltGFdcbLTkwy/giphy.gif)
 - Using API calls to get data for the movies:
     - Movie details
     - Movie trailers
@@ -18,8 +20,6 @@ This application allows a user to view a selection of movies and click into each
 - Sorting the displayed movies by rating
 - Searching for a movie by title.
 - Being able to return to the homepage after viewing a movies details.
-![gif of Website Functionality](https://media.giphy.com/media/QzId1JiOGHKrvupo0z/giphy.gif)
-![gif of Live Search](https://media.giphy.com/media/g4edw3ltGFdcbLTkwy/giphy.gif)
 ## Technologies Used
 - React | React Player | Carousel | Jest | React Testing Library | Router | CSS | GitHub 
 
