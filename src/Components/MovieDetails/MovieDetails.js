@@ -56,7 +56,7 @@ class MovieDetails extends Component {
       <section>
         <section className="movie-details">
           <section className="movie-facts">
-            <section className="poster-image">
+            <section>
               <img
                src={this.state.movieDetails.poster_path}
                className="movie-image"
@@ -87,18 +87,20 @@ class MovieDetails extends Component {
               <h3>{this.state.movieDetails.title.toUpperCase()}</h3>
                 <p className="tagline">{this.state.movieDetails.tagline}</p>
                 <p className="tagline">Average Rating: &#11088; {this.state.movieDetails.average_rating.toFixed(1)}</p>
-
+                <img src={this.state.movieDetails.backdrop_path}
+                 className="backdrop-image"
+                 alt={this.state.movieDetails.title} />
+            </section>
+            <section className="movie-trailers">
+              <Carousel showThumbs={false} width={650}>
+                {this.state.movieTrailers.map(video => {
+                    return (<ReactPlayer data-testid={video.id} key={video.id}
+                    url={`https://www.youtube.com/embed/${video.key}`} />)
+                  })
+                }
+              </Carousel>
             </section>
           </section>
-        </section>
-        <section className="movie-trailers">
-          <Carousel showThumbs={false}>
-            {this.state.movieTrailers.map(video => {
-                return (<ReactPlayer data-testid={video.id} key={video.id}
-                url={`https://www.youtube.com/embed/${video.key}`} />)
-              })
-            }
-          </Carousel>
         </section>
       </section>
     );
